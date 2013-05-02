@@ -1,0 +1,97 @@
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<title>Tarai Function Music</title>
+	<link href="http://kevinburke.bitbucket.org/markdowncss/markdown.css" rel="stylesheet"></link>
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<script type="text/javascript" src="jquery.socialbutton-1.8.1.js"></script>
+	<script type="text/javascript" src="socialbutton.js"></script>
+
+	<script type="text/javascript" src="waapisim.js"></script>
+	<script type="text/javascript" src="rompler.js"></script>
+	<script type="text/javascript" src="player.js"></script>
+	<script type="text/javascript" src="tarai_language.js"></script>
+	<style type="text/css">
+		input[type=text] {
+			text-align: right;
+			width: 30px;
+			margin-left: 8px;
+			margin-right: 3px;
+		}
+		#formula { font-size: x-large; }
+		#buttons { margin-left: 20px; }
+		.indent { margin-left: 30px; }
+		.block div { margin: 40px 2px 40px 2px; float: left; }
+	</style>
+</head>
+<body>
+
+<h1>Tarai Function Music</h1>
+<p>May 2, 2013 by <a href="https://twitter.com/aike1000" target="_blank">aike</a>
+
+<h2>Introduction</h2>
+<p>Tarai Function Music is an approach of algorithmic composition based on <a href="http://en.wikipedia.org/wiki/Tak_%28function%29" target="_blank">tarai function</a>.
+It automatically generates a complex and very long music from a simple formula.</p>
+
+<h2>Example</h2>
+<p>The following is an implementation of tarai function music written in JavaScript.</p>
+
+	<div class="indent">
+	<span id="formula">
+	Tarai(<input type="text" id="argx" size="4" value="10">, <input type="text" id="argy" size="4" value="5">, <input type="text" id="argz" size="4" value="0">)
+	</span>
+	<span id="buttons">
+	<button onclick="taraiMachine.onStart();">Start/Pause</button>
+	<button onclick="taraiMachine.onReset();">Reset</button>
+	</span>
+	<br />
+	function call count: <span id="count">0</span><br />
+		<div id="proc" style="display:none;">
+			now processing ... Tarai(<span id="calcx"></span>, <span id="calcy"></span>, <span id="calcz"></span>) => <span id="note"></span>
+		</div>
+	</div>
+
+<h2>Tarai function</h2>
+<p>Tarai function is a recursive function devised by Ikuo Takeuchi in 1978.
+This function processes so many recursion function calls. So it is often used as a programming language benchmarking.</p>
+
+<img src="tarai.png">
+
+<h2>Mapping arguments to music notes</h2>
+<p>I tried to assign the function's arguments to music notes.
+For example, the minimum argument value (-1) converts to D, next value (0) converts to E, ...
+Thus the three arguments are assigned to the triad of <a href="http://en.wikipedia.org/wiki/Dorian_mode" target="_blank">D Dorian mode </a>.
+</p>
+
+<img src="notemapping.png">
+
+<p>Next, the triad chord notes are mapped arpeggio sequence pattern, like this.</p>
+
+<img src="arpeggiator.png">
+
+<p>In this way, It generates arpeggio notes in every recursion function call.</p>
+
+<h2>Resources</h2>
+<h3>YouTube and Soundcloud</h3>
+<iframe width="560" height="315" src="http://www.youtube.com/embed/4qsxTV3sg-g" frameborder="0" allowfullscreen></iframe>
+<iframe width="560" height="166" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=http%3A%2F%2Fapi.soundcloud.com%2Ftracks%2F59662186"></iframe>
+
+<h3>Other Implementations of Tarai Function Music</h3>
+<ul class="indent">
+<li><a href="http://d.hatena.ne.jp/sumim/20111112/p1" target="_blank">Smalltalk</a></li>
+<li><a href="http://d.hatena.ne.jp/youz/20121224/1356365175" target="_blank">Scheme</a></li>
+<li><a href="http://homepage1.nifty.com/~skz/Entry/music.html" target="_blank">Scheme</a></li>
+<li><a href="https://gist.github.com/kawabata/1371488" target="_blank">Clojure</a></li>
+<li><a href="http://d.hatena.ne.jp/aike/20120723" target="_blank">SuperCollider</a></li>
+<li><a href="http://jsdo.it/taninsw/fFpc" target="_blank">JavaScript</a></li>
+</ul>
+
+
+<div class="block clearfix">
+	<div id="twitter"></div>
+	<div id="gplus1"></div>
+	<div id="facebook"></div>
+	<div id="hatena"></div>
+</div>
+</body>
+</html>
