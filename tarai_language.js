@@ -154,7 +154,7 @@ Interpreter.prototype.eval = function() {
 						this.reset = true;
 				}
 			} else {
-				this.vars[args[0]] = w1;
+				this.vars[args[0]] = this.evalvar(args[2]);
 			}
 			this.pc += 1;
 			break;
