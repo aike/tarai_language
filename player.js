@@ -11,7 +11,7 @@
 Player = function() {
 	this.beat = Math.floor(2000 / 16);
 	this.notelen = Math.floor(this.beat * 4 * 7 / 8);
-	this.notename  = ['D','E','F','G','A','B','C','D','E','F','G','A','B','C','D'];
+	this.notename  = ['D','E','F','G','A','B','C'];
 	this.filename  = ['d','e','f','g','a','b','c1','d1','e1','f1','g1','a1','b1','c2','d2','e2','f2','g2','a2','b2','c'];
 	this.notes = new Array(24);
 	this.mute = false;
@@ -47,7 +47,9 @@ Player.prototype.play = function(n1, n2, n3) {
 					if( a > b ) return 1;
 					return 0;
 				});
-	$('#note').text('(' + this.notename[n1 + 1] + ', ' + this.notename[n2 + 1] + ', ' + this.notename[n3 + 1] + ')');
+	$('#note').text('(' + this.notename[(n1 + 1) % 7] + ', '
+						+ this.notename[(n2 + 1) % 7] + ', '
+						+ this.notename[(n3 + 1) % 7] + ')');
 	this.playnote(a[0],     this.beat * 0);
 	this.playnote(a[0] + 7, this.beat * 1);
 	this.playnote(a[1],     this.beat * 2);
