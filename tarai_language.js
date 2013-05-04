@@ -223,7 +223,7 @@ Interpreter.prototype.eval = function() {
 
 		case 'return':
 			// set return value
-			this.stack.push(this.evalvar(args[1]]));
+			this.stack.push(this.evalvar(args[1]));
 
 			// get return value
 			this.vars['ret'] = this.stack.pop();
