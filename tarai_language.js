@@ -115,6 +115,8 @@ Interpreter.prototype.eval = function() {
 		cmd = 'blank';
 	}
 
+	var w1, w2, w3;
+
 	this.clock = 0;
 	switch (cmd) {
 		case 'blank':
@@ -132,36 +134,40 @@ Interpreter.prototype.eval = function() {
 
 		case '=':
 			if (args.length > 4) {
+				w1 = this.evalvar(args[2]);
+				w2 = this.evalvar(args[4]);
 				switch (args[3]) {
 					case '+':
-						this.vars[args[0]] = this.evalvar(args[2]) + this.evalvar(args[4]);
+						this.vars[args[0]] = w1 + w2;
 						break;
 					case '-':
-						this.vars[args[0]] = this.evalvar(args[2]) - this.evalvar(args[4]);
+						this.vars[args[0]] = w1 - w2;
 						break;
 					case '*':
-						this.vars[args[0]] = this.evalvar(args[2]) * this.evalvar(args[4]);
+						this.vars[args[0]] = w1 * w2;
 						break;
 					case '/':
-						this.vars[args[0]] = Math.floor(this.evalvar(args[2]) / this.evalvar(args[4]));
+						this.vars[args[0]] = Math.floor(w1 / w2);
 						break;
 					default:
 						console.log('error (' + this.pc + '): ' + this.script[this.pc]);
 						this.reset = true;
 				}
 			} else {
-				this.vars[args[0]] = this.evalvar(args[2]);
+				this.vars[args[0]] = w1;
 			}
 			this.pc += 1;
 			break;
 
 		case 'if':
-			if (((args[2] === '==') && (this.evalvar(args[1]) == this.evalvar(args[3])))
-			 || ((args[2] === '!=') && (this.evalvar(args[1]) != this.evalvar(args[3])))
-			 || ((args[2] === '<=') && (this.evalvar(args[1]) <= this.evalvar(args[3])))
-			 || ((args[2] === '>=') && (this.evalvar(args[1]) >= this.evalvar(args[3])))
-			 || ((args[2] === '<')  && (this.evalvar(args[1]) <  this.evalvar(args[3])))
-			 || ((args[2] === '>')  && (this.evalvar(args[1]) >  this.evalvar(args[3])))) {
+			w1 = this.evalvar(args[1]);
+			w2 = this.evalvar(args[3]);
+			if (((args[2] === '==') && (w1 == w2))
+			 || ((args[2] === '!=') && (w1 != w2))
+			 || ((args[2] === '<=') && (w1 <= w2))
+			 || ((args[2] === '>=') && (w1 >= w2))
+			 || ((args[2] === '<')  && (w1 <  w2))
+			 || ((args[2] === '>')  && (w1 >  w2))) {
 				this.pc += 1;
 			} else {
 				this.pc += 2;
@@ -187,9 +193,9 @@ Interpreter.prototype.eval = function() {
 			this.stack.push(this.vars['a3']);
 
 			// set arguments
-			var w1 = this.evalvar(args[2]);
-			var w2 = this.evalvar(args[3]);
-			var w3 = this.evalvar(args[4]);
+			w1 = this.evalvar(args[2]);
+			w2 = this.evalvar(args[3]);
+			w3 = this.evalvar(args[4]);
 			this.vars['a1'] = w1;
 			this.vars['a2'] = w2;
 			this.vars['a3'] = w3;
@@ -217,7 +223,7 @@ Interpreter.prototype.eval = function() {
 
 		case 'return':
 			// set return value
-			this.stack.push(this.vars[args[1]]);
+			this.stack.push(this.evalvar(args[1]]));
 
 			// get return value
 			this.vars['ret'] = this.stack.pop();
