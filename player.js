@@ -16,7 +16,7 @@ Player = function() {
 	this.notes = new Array(24);
 	this.mute = false;
 
-	this.ctx = var ctx = new (window.AudioContext || window.webkitAudioContext)();
+	this.ctx = new (window.AudioContext || window.webkitAudioContext)();
 
 	for (var i = 0; i < this.filename.length; i++) {
 		this.notes[i] = new Rompler(this.ctx, './wav/' + this.filename[i] + '.wav');
