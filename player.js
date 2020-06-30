@@ -41,6 +41,10 @@ Player.prototype.playnote = function(note, timer) {
 }
 
 Player.prototype.play = function(n1, n2, n3) {
+	if(this.ctx.state === 'suspended') {
+		this.ctx.resume();
+	}
+
 	var a = [n1 + 1, n2 + 1, n3 + 1]
 				.sort(function(a,b){
 					if( a < b ) return -1;

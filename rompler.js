@@ -63,11 +63,11 @@ Rompler.prototype.noteOn = function() {
 	if (this.sample.buffer != null) {
 		this.src.buffer = this.sample.buffer;
 		this.src.connect(this.next_node);
-		this.src.noteOn(0);
+		this.src.start(0);
 	}
 };
 
 Rompler.prototype.noteOff = function() {
-	this.src.noteOff(0);
+	this.src.stop(0);
 };
 
